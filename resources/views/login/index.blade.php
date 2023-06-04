@@ -21,9 +21,18 @@
                       </div>
                       <div class="col-md-6 col-lg-7 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
-          
-                          <form>
-          
+                          
+                          @if($errors->any())
+                            <div class="bg-red p-3">
+                              <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          @endif
+                          <form action="{{url('login')}}" method="POST">
+                            @csrf
                             <div class="d-flex align-items-center mb-3 pb-1">
                                 <span class="h1 fw-bold mb-0">USER LOGIN</span>
                             </div>
@@ -31,17 +40,17 @@
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Masuk ke akun anda</h5>
           
                             <div class="form-outline mb-4">
-                              <input type="email" id="form2Example17" class="form-control form-control-lg" />
-                              <label class="form-label" for="form2Example17">Alamat Email</label>
+                              <input type="email" id="email" class="form-control form-control-lg" name="email"/>
+                              <label class="form-label" for="email">Alamat Email</label>
                             </div>
           
                             <div class="form-outline mb-4">
-                              <input type="password" id="form2Example27" class="form-control form-control-lg" />
-                              <label class="form-label" for="form2Example27">Password</label>
+                              <input type="password" id="password" class="form-control form-control-lg" name="password"/>
+                              <label class="form-label" for="password">Password</label>
                             </div>
           
                             <div class="pt-1 mb-4">
-                              <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                              <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                             </div>
           
                             <p class="mb-5 pb-lg-2" style="color: #393f81;">Tidak ada Akun? <a href="{{url('/registrasi')}}"

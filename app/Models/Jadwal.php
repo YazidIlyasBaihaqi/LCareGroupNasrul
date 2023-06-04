@@ -17,7 +17,7 @@ class Jadwal extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user()
+    public function Jadwal()
     {
         return $this->hasMany(User::class);
     }

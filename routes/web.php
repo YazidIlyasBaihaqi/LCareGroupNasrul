@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\DakesController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JurkesController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('user', UserController::class);
+Route::resource('jurkes', JurkesController::class); //Jurnal Perawatan
+Route::resource('dakes', DakesController::class); //Pemantauan Kesehatan
+Route::resource('home', ArtikelController::class);
 
-Route::get('/', function () {
-    return view('landingPage.index');
-});
+Route::get('/home', DashboardController::class)->middleware('auth');
 
-Route::get('/login', function () {
-    return view('login.index');
-});
+Route::get('/logout', [ProfileController::class, 'doLogout']);
+Route::get('/', [ProfileController::class, 'show'])->name('login');
+Route::post('/login', [ProfileController::class, 'login']);
 
 Route::get('/registrasi', function () {
     return view('register.index');
