@@ -1,123 +1,62 @@
-<head>
-    <title>Login 05</title>
-    <meta charset="utf-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Login 05</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/05f9e72f4d.js" crossorigin="anonymous"></script>
 
-    <link
-        href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
-        rel="stylesheet"
-    />
-
-    <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Login #05</h2>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-5">
-                <div class="wrap">
-                    <div
-                        class="img"
-                        style="background-image: url(images/bg-1.jpg)"
-                    ></div>
-                    <div class="login-wrap p-4 p-md-5">
-                        <div class="d-flex">
-                            <div class="w-100">
-                                <h3 class="mb-4">Sign In</h3>
+	</head>
+	<body>
+        <section class="vh-100" style="background-color: #76DEB7;">
+            <div class="container py-5 h-100 ">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                  <div class="card shadow" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                      <div class="col-md-6 col-lg-5 d-none d-md-block">
+                        <img src="{{asset('assets/imgs/Lansia UI 2.png')}}"
+                          alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                      </div>
+                      <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+          
+                          <form>
+          
+                            <div class="d-flex align-items-center mb-3 pb-1">
+                                <span class="h1 fw-bold mb-0">USER LOGIN</span>
                             </div>
-                            <div class="w-100">
-                                <p
-                                    class="social-media d-flex justify-content-end"
-                                >
-                                    <a
-                                        href="#"
-                                        class="social-icon d-flex align-items-center justify-content-center"
-                                        ><span class="fa fa-facebook"></span
-                                    ></a>
-                                    <a
-                                        href="#"
-                                        class="social-icon d-flex align-items-center justify-content-center"
-                                        ><span class="fa fa-twitter"></span
-                                    ></a>
-                                </p>
+          
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Masuk ke akun anda</h5>
+          
+                            <div class="form-outline mb-4">
+                              <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                              <label class="form-label" for="form2Example17">Alamat Email</label>
                             </div>
+          
+                            <div class="form-outline mb-4">
+                              <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                              <label class="form-label" for="form2Example27">Password</label>
+                            </div>
+          
+                            <div class="pt-1 mb-4">
+                              <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                            </div>
+          
+                            <p class="mb-5 pb-lg-2" style="color: #393f81;">Tidak ada Akun? <a href="{{url('/registrasi')}}"
+                                style="color: #393f81;">Registrasi disini</a></p>
+                          </form>
+          
                         </div>
-                        <form action="#" class="signin-form">
-                            <div class="form-group mt-3">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    required
-                                />
-                                <label
-                                    class="form-control-placeholder"
-                                    for="username"
-                                    >Username</label
-                                >
-                            </div>
-                            <div class="form-group">
-                                <input
-                                    id="password-field"
-                                    type="password"
-                                    class="form-control"
-                                    required
-                                />
-                                <label
-                                    class="form-control-placeholder"
-                                    for="password"
-                                    >Password</label
-                                >
-                                <span
-                                    toggle="#password-field"
-                                    class="fa fa-fw fa-eye field-icon toggle-password"
-                                ></span>
-                            </div>
-                            <div class="form-group">
-                                <button
-                                    type="submit"
-                                    class="form-control btn btn-primary rounded submit px-3"
-                                >
-                                    Sign In
-                                </button>
-                            </div>
-                            <div class="form-group d-md-flex">
-                                <div class="w-50 text-left">
-                                    <label
-                                        class="checkbox-wrap checkbox-primary mb-0"
-                                        >Remember Me
-                                        <input type="checkbox" checked />
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="w-50 text-md-right">
-                                    <a href="#">Forgot Password</a>
-                                </div>
-                            </div>
-                        </form>
-                        <p class="text-center">
-                            Not a member?
-                            <a data-toggle="tab" href="#signup">Sign Up</a>
-                        </p>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
+          </section>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
+	</body>
+</html>
+

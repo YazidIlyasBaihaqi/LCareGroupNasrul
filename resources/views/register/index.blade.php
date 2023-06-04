@@ -1,86 +1,94 @@
-<head>
-    <link
-    href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
-    rel="stylesheet"
-    />
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Login 05</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/05f9e72f4d.js" crossorigin="anonymous"></script>
 
-    <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+	</head>
+	<body>
+        <section class="" style="background-color: #76DEB7;">
+            <div class="container py-5 h-100 ">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                  <div class="card shadow" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                      <div class="col-md-6 col-lg-5 d-none d-md-block">
+                        <img src="{{asset('assets/imgs/Lansia UI 2.png')}}"
+                          alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height:100%;" />
+                      </div>
+                      <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+          
+                          <form>
+          
+                            <div class="d-flex align-items-center mb-3 pb-1">
+                                <span class="h1 fw-bold mb-0">USER REGISTRASI</span>
+                            </div>
+                            
+                            <div class="form-outline">
+                              <label class="form-label" for="nama">Nama</label>
+                              <input type="nama" id="nama" class="form-control form-control-lg" />
+                            </div>
+          
+                            <div class="form-outline">
+                              <label class="form-label" for="password">Password</label>
+                              <input type="password" id="password" class="form-control form-control-lg" />
+                            </div>
 
-    <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-    <section class="h-100 h-custom" style="background-color: #8fc4b7;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-8 col-xl-6">
-        <div class="card rounded-3">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
-            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
-            alt="Sample photo">
-          <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+                            <div class="form-outline mb-1">
+                              <label class="form-label" for="email">Email</label>
+                              <input type="email" id="email" class="form-control form-control-lg" />
+                            </div>
 
-            <form class="px-md-2">
+                            <div class="form-outline mb-1">
+                              <label class="form-label" for="usia">Usia</label>
+                              <input type="usia" id="usia" class="form-control form-control-lg" />
+                            </div>
 
-              <div class="form-outline mb-4">
-                <input type="text" id="form3Example1q" class="form-control" />
-                <label class="form-label" for="form3Example1q">Name</label>
-              </div>
+                            <div class="form-outline mb-1">
+                              <label class="form-label" for="nomor">Nomor HP</label>
+                              <input type="nomor" id="nomor" class="form-control form-control-lg" />
+                            </div>
 
-              <div class="row">
-                <div class="col-md-6 mb-4">
+                            <div class="form-outline mb-1">
+                              <label class="form-label" for="alamat">Alamat</label>
+                              <textarea type="alamat" id="alamat" class="form-control form-control-lg" style="height:75px;"/></textarea>
+                            </div>
 
-                  <div class="form-outline datepicker">
-                    <input type="text" class="form-control" id="exampleDatepicker1" />
-                    <label for="exampleDatepicker1" class="form-label">Select a date</label>
+                            <div class="mb-4 form-outline">
+                                <label class="form-label" for="gender">Pilih gender</label>
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender1">
+                                    <label class="form-check-label" for="gender1">
+                                      Perempuan
+                                    </label>
+                                </div>
+              
+                                <div class="form-check col-6">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender2">
+                                    <label class="form-check-label" for="gender2">
+                                      Laki - Laki
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="pt-1 mb-4">
+                              <button class="btn btn-dark btn-lg btn-block" type="button">Registrasi</button>
+                            </div>
+
+                          </form>
+          
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                </div>
-                <div class="col-md-6 mb-4">
-
-                  <select class="select">
-                    <option value="1" disabled>Gender</option>
-                    <option value="2">Female</option>
-                    <option value="3">Male</option>
-                    <option value="4">Other</option>
-                  </select>
-
                 </div>
               </div>
+            </div>
+          </section>
 
-              <div class="mb-4">
+	</body>
+</html>
 
-                <select class="select">
-                  <option value="1" disabled>Class</option>
-                  <option value="2">Class 1</option>
-                  <option value="3">Class 2</option>
-                  <option value="4">Class 3</option>
-                </select>
-
-              </div>
-
-              <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
-                <div class="col-md-6">
-
-                  <div class="form-outline">
-                    <input type="text" id="form3Example1w" class="form-control" />
-                    <label class="form-label" for="form3Example1w">Registration code</label>
-                  </div>
-
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</body>
