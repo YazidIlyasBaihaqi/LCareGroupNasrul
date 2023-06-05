@@ -29,10 +29,12 @@ class DakesController extends Controller
                 ->orderBy('data_kesehatan.id', 'desc')
                 ->get();
         } else {
-            $datas = Data_Kesehatan::get();
+            $id = Auth::user()->id;
+            $datas = Data_Kesehatan::where('user_id', $id)->get();
         }
+        $user = Auth::user();
 
-        return view('dakes.index', compact('datas'));
+        return view('dakes.index', compact('datas', 'user'));
     }
 
     /**

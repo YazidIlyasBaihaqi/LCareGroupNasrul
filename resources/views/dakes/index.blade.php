@@ -6,9 +6,9 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Aktivitas</th>
-                        <th>Catatan</th>
-                        <th>Tanggal</th>
+                        <th>Tekanan Darah</th>
+                        <th>Detak Jantung</th>
+                        <th>Durasi Tidur</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -18,9 +18,9 @@
             @foreach ($datas as $item)
                 <tbody>
                     <th>{{ $no }}</th>
-                    <td>{{ $item->aktivitas }}</td>
-                    <td>{{ $item->care_notes }}</td>
-                    <td>{{ $item->entry_date }}</td>
+                    <td>{{ $item->tekanan_darah }}</td>
+                    <td>{{ $item->detak_jantung }}</td>
+                    <td>{{ $item->durasi_tidur }}</td>
                     <td>
                         <form method="POST" action="">
                             @csrf

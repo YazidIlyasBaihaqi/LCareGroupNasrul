@@ -30,10 +30,12 @@ class DokumenController extends Controller
                 ->orderBy('dokumen_medis.id', 'desc')
                 ->get();
         } else {
-            $datas = Dokumen_Medis::get();
+            $id = Auth::user()->id;
+            $datas = Dokumen_Medis::where('user_id', $id)->get();
         }
+        $user = Auth::user();
 
-        return view('dokumed.index', compact('datas'));
+        return view('dokumed.index', compact('datas', 'user'));
     }
 
     /**

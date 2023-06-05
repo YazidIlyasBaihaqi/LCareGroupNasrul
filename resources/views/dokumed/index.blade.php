@@ -6,9 +6,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Aktivitas</th>
-                        <th>Catatan</th>
-                        <th>Tanggal</th>
+                        <th>Tipe Dokumen</th>
+                        <th>File</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -18,9 +17,8 @@
             @foreach ($datas as $item)
                 <tbody>
                     <th>{{ $no }}</th>
-                    <td>{{ $item->aktivitas }}</td>
-                    <td>{{ $item->care_notes }}</td>
-                    <td>{{ $item->entry_date }}</td>
+                    <td>{{ $item->tipe_dokumen }}</td>
+                    <td>{{ $item->file_upload }}</td>
                     <td>
                         <form method="POST" action="">
                             @csrf

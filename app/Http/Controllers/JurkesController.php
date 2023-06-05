@@ -25,14 +25,16 @@ class JurkesController extends Controller
         if (Auth::user()->role == 'Admin') {
             $datas = DB::table('jurnal_kesehatan')
                 ->join('user', 'user.id', '=', 'jurnal_kesehatan.user_id')
-                ->select('jurnal_kesehatan.*', 'user.nama as pengguna')
+                ->select('jurnal_kesehatan.*', 'user.user as pengguna')
                 ->orderBy('jurnal_kesehatan.id', 'desc')
                 ->get();
         } else {
-            $datas = Jurnal_Kesehatan::get();
+            $id = Auth::user()->id;
+            $datas = Jurnal_Kesehatan::where('user_id', $id)->get();
         }
+        $user = Auth::user();
 
-        return view('jurkes.index', compact('datas'));
+        return view('jurkes.index', compact('datas', 'user'));
     }
 
     /**

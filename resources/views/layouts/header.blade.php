@@ -1,15 +1,12 @@
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container p-0" style="background-color: #A7D7C5; min-width: 100%;">
-        {{-- @include('landingPage.header') --}}
-        @yield('content')
-        <div class="row">
-            @include('landingPage.sidebar')
-            @include('landingPage.home')
+<div class="" style="background-color:#FFF2F2;">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <h3 style="color: 76DEB7;">Halo Lansia</h3>
+        </div>
+
+        <div class="col-md-3 text-end">
+            {{ $user -> user}}
+            <a href="{{ url('logout') }}" class="btn btn-outline-primary me-2">Logout</a>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-</body>
+</div>
