@@ -18,7 +18,7 @@ class DashboardController extends Controller
         return view('landingPage.index', compact('user', 'datas'));
     }
 
-    public function admin()
+    public function adminView()
     {
         return view('admin.index', [
             'user' => Auth::user()

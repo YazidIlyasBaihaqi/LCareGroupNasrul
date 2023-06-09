@@ -73,7 +73,7 @@ class ArtikelController extends Controller
         //------------apakah user  ingin upload foto--------- --
         if (!empty($request->foto)) {
             $fileName = 'artikel_' . $request->judul . '.' . $request->foto->extension();
-            $request->foto->move(public_path('admin/assets/imgs/artikel'), $fileName);
+            $request->foto->move(public_path('/assets/imgs/artikel/'), $fileName);
         } else {
             $fileName = NULL;
         }
