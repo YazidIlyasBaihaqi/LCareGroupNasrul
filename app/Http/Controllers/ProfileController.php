@@ -33,6 +33,9 @@ class ProfileController extends Controller
         ])->validate();
 
         if (auth()->attempt(\request()->only(['email', 'password']))) {
+            if (Auth::user()->role == 'Admin') {
+                return redirect('/admin');
+            };
             return redirect('/home');
         }
 

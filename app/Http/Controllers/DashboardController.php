@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -11,7 +12,15 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
-        return view('landingPage.index', [
+        $user = Auth::user();
+        $datas = Artikel::get();
+
+        return view('landingPage.index', compact('user', 'datas'));
+    }
+
+    public function admin()
+    {
+        return view('admin.index', [
             'user' => Auth::user()
         ]);
     }

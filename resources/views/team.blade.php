@@ -23,7 +23,7 @@
           </div>
         <div class="col mb-4">
           <div class="card d-flex justify-content-center align-items-center">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{asset('/assets/imgs/Aldi.jpg')}}" class="card-img-top" alt="..." style="height:200px;width:150px;">
             <h5 class="card-title">Backend</h5>
             <div class="card-body">
                 <p class="card-text">M. Aldi</p>
@@ -32,7 +32,7 @@
         </div>
         <div class="col mb-4">
           <div class="card d-flex justify-content-center align-items-center">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{asset('/assets/imgs/Eka.jpg')}}" class="card-img-top" alt="..." style="height:200px;width:150px;">
             <h5 class="card-title">UI dan Design</h5>
             <div class="card-body">
                 <p class="card-text">Eka Rahma</p>
@@ -41,7 +41,7 @@
         </div>
         <div class="col mb-4">
             <div class="card d-flex justify-content-center align-items-center">
-              <img src="..." class="card-img-top" alt="...">
+              <img src="{{asset('/assets/imgs/Maulana.jpg')}}" class="card-img-top" alt="..." style="height:200px;width:150px;">
               <h5 class="card-title">UI dan Design</h5>
               <div class="card-body">
                   <p class="card-text">Maulana Aji</p>

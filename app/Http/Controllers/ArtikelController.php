@@ -22,17 +22,13 @@ class ArtikelController extends Controller
 
     public function index()
     {
-        if (Auth::user()->role == 'Admin') {
-            $datas = DB::table('artikel')
-                ->join('user', 'user.id', '=', 'artikel.user_id')
-                ->select('artikel.*', 'user.nama as pengguna')
-                ->orderBy('artikel.id', 'desc')
-                ->get();
-        } else {
-            $datas = Artikel::get();
-        }
-
-        return view('artikel.index', compact('datas'));
+        $datas = DB::table('artikel')
+            ->join('user', 'user.id', '=', 'artikel.user_id')
+            ->select('artikel.*', 'user.user as editor')
+            ->orderBy('artikel.id', 'desc')
+            ->get();
+        $user = Auth::user();
+        return view('admin.artikel', compact('datas', 'user'));
     }
 
     /**
@@ -40,8 +36,17 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        return view('artikel.form');
+        $user = Auth::user();
+        return view('artikel.form', compact('user'));
     }
+
+    // public function show()
+    // {
+    //     $datas = Artikel::get();
+    //     $user = Auth::user();
+
+    //     return view('admin.artikel', compact('datas', 'user'));
+    // }
 
     public function store(Request $request)
     {
@@ -68,7 +73,7 @@ class ArtikelController extends Controller
         //------------apakah user  ingin upload foto--------- --
         if (!empty($request->foto)) {
             $fileName = 'artikel_' . $request->judul . '.' . $request->foto->extension();
-            $request->foto->move(public_path('admin/assets/img'), $fileName);
+            $request->foto->move(public_path('admin/assets/imgs/artikel'), $fileName);
         } else {
             $fileName = NULL;
         }
@@ -127,9 +132,9 @@ class ArtikelController extends Controller
             $namaFileFotoLama = $f->foto;
         }
         //------------apakah user  ingin ubah upload foto baru--------- --
-        if (!empty($request->foto)) {
+        if (isset($request->foto)) {
             //jika ada foto lama, hapus foto lamanya terlebih dahulu
-            if (!empty($namaFileFotoLama)) unlink('artikel/assets/img/' . $namaFileFotoLama);
+            if (isset($namaFileFotoLama)) unlink('artikel/assets/img/' . $namaFileFotoLama);
             //lalukan proses ubah foto lama menjadi foto baru
             $fileName = 'artikel_' . $request->judul . '.' . $request->foto->extension();
             //$fileName = $request->foto->getClientOriginalName();
