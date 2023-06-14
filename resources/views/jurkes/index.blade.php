@@ -1,6 +1,16 @@
 @extends('layouts.index')
 @section('content')
-    <div class="m-1" style="background-color:#fffafa; width:73%;">
+    <div class="col-9" style="background-color:#fffafa; border-style: solid; border-color: #A7D7C5;">
+        <h3>Jurnal Kesehatan</h3>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
+        <a href="{{ route('jurkes.create') }}" class="btn btn-primary" title="Tambah jadwal">
+            <i class="bi bi-plus"></i>
+        </a>
         <div class="container mt-3">
             <table class="table table-hover datatable">
                 <thead>
@@ -15,17 +25,20 @@
             @php
                 $no = 1;
             @endphp
-            @foreach ($datas as $item)
+            @foreach ($datas as $data)
                 <tbody>
                     <th>{{ $no }}</th>
-                    <td>{{ $item->aktivitas }}</td>
-                    <td>{{ $item->care_notes }}</td>
-                    <td>{{ $item->entry_date }}</td>
+                    <td>{{ $data->aktivitas }}</td>
+                    <td>{{ $data->care_notes }}</td>
+                    <td>{{ $data->entry_date }}</td>
                     <td>
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('jurkes.destroy', $data->id) }}">
                             @csrf
                             @method('DELETE')
-                            <a class="btn btn-warning" href="" title="ubah">   
+                            <a href="{{ url('/jurkes-pdf') }}" class="btn btn-danger" title="Export to PDF">
+                                <i class="bi bi-file-earmark-pdf-fill"></i>
+                            </a>
+                            <a class="btn btn-warning" href="{{route('jurkes.edit', $data->id)}}" title="ubah">   
                               <i class="bi bi-pencil-fill"></i>
                             </a>
                             <!-- hapus data -->

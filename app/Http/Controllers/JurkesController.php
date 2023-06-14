@@ -42,7 +42,8 @@ class JurkesController extends Controller
      */
     public function create()
     {
-        return view('jurkes.form');
+        $user = Auth::user();
+        return view('jurkes.form', compact('user'));
     }
 
     /**
@@ -54,13 +55,13 @@ class JurkesController extends Controller
         $request->validate(
             [
                 'entry_date' => 'required',
-                'aktifitas' => 'required',
+                'aktivitas' => 'required',
                 'care_notes' => 'required',
             ],
             //custom pesan errornya
             [
                 'entry_date.required' => 'Tanggal Wajib Diisi',
-                'aktifitas.required' => 'Aktifitas Wajib Diisi',
+                'aktivitas.required' => 'Aktifitas Wajib Diisi',
                 'care_notes.required' => 'Care Note Wajib Diisi',
             ]
         );
@@ -68,7 +69,7 @@ class JurkesController extends Controller
         DB::table('jurnal_kesehatan')->insert(
             [
                 'entry_date' => $request->entry_date,
-                'aktifitas' => $request->aktifitas,
+                'aktivitas' => $request->aktivitas,
                 'care_notes' => $request->care_notes,
                 'user_id' => Auth::user()->id,
             ]
@@ -105,13 +106,13 @@ class JurkesController extends Controller
         $request->validate(
             [
                 'entry_date' => 'required',
-                'aktifitas' => 'required',
+                'aktivitas' => 'required',
                 'care_notes' => 'required',
             ],
             //custom pesan errornya
             [
                 'entry_date.required' => 'Tanggal Wajib Diisi',
-                'aktifitas.required' => 'Aktifitas Wajib Diisi',
+                'aktivitas.required' => 'Aktifitas Wajib Diisi',
                 'care_notes.required' => 'Care Note Wajib Diisi',
             ]
         );
@@ -120,7 +121,7 @@ class JurkesController extends Controller
         DB::table('jurnal_kesehatan')->where('id', $id)->update(
             [
                 'entry_date' => $request->entry_date,
-                'aktifitas' => $request->aktifitas,
+                'aktivitas' => $request->aktivitas,
                 'care_notes' => $request->care_notes,
                 'user_id' => Auth::user()->id,
             ]

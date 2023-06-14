@@ -21,61 +21,72 @@
                       </div>
                       <div class="col-md-6 col-lg-7 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
-          
-                          <form>
-          
+                          @if ($errors->any())
+                          <div class="alert alert-danger">
+                              <ul>
+                                  @foreach ($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                  @endforeach
+                              </ul>
+                          </div>
+                          @endif
+                          <form method="POST" action="{{ route('user.store') }}" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            @csrf
                             <div class="d-flex align-items-center mb-3 pb-1">
                                 <span class="h1 fw-bold mb-0">USER REGISTRASI</span>
                             </div>
                             
-                            <div class="form-outline">
+                            <div class="form-floating mb-3"">
+                              <input type="nama" id="nama" name="user" class="form-control form-control-lg" placeholder="Nama"/>
                               <label class="form-label" for="nama">Nama</label>
-                              <input type="nama" id="nama" class="form-control form-control-lg" />
                             </div>
           
-                            <div class="form-outline">
-                              <label class="form-label" for="password">Password</label>
-                              <input type="password" id="password" class="form-control form-control-lg" />
+                            <div class="form-floating mb-3">
+                              <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Password"/>
+                              <label class="form-label" for="password" >Password</label>
                             </div>
 
-                            <div class="form-outline mb-1">
-                              <label class="form-label" for="email">Email</label>
-                              <input type="email" id="email" class="form-control form-control-lg" />
+                            <div class="form-floating mb-3">
+                              <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Email"/>
+                              <label class="form-label" for="email" >Email</label>
                             </div>
 
-                            <div class="form-outline mb-1">
-                              <label class="form-label" for="usia">Usia</label>
-                              <input type="usia" id="usia" class="form-control form-control-lg" />
+                            <div class="form-floating mb-3">
+                              <input class="form-control" name="tgl_lahir" value="" id="tgl_lahir" type="date"
+                                  placeholder="Tanggal Jadwal" data-sb-validations="required" />
+                              <label for="tgl_lahir">Tanggal Lahir</label>
+                              <div class="invalid-feedback" data-sb-feedback="tgl_lahir:required">tanggal lahir is required.</div>
+                          </div>
+
+                            <div class="form-floating mb-3">
+                              <input type="nomor" id="nomor" name="hp" class="form-control form-control-lg" placeholder="Nomor HP"/>
+                              <label class="form-label" for="nomor" >Nomor HP</label>
                             </div>
 
-                            <div class="form-outline mb-1">
-                              <label class="form-label" for="nomor">Nomor HP</label>
-                              <input type="nomor" id="nomor" class="form-control form-control-lg" />
-                            </div>
-
-                            <div class="form-outline mb-1">
-                              <label class="form-label" for="alamat">Alamat</label>
-                              <textarea type="alamat" id="alamat" class="form-control form-control-lg" style="height:75px;"/></textarea>
+                            <div class="form-floating mb-3">
+                              <textarea type="alamat" id="alamat" name="alamat" class="form-control form-control-lg" style="height:75px;" placeholder="Alamat"/></textarea>
+                              <label class="form-label" for="alamat" >Alamat</label>
                             </div>
 
                             <div class="mb-4 form-outline">
                                 <label class="form-label" for="gender">Pilih gender</label>
                                 <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender1">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender1" value="P">
                                     <label class="form-check-label" for="gender1">
                                       Perempuan
                                     </label>
                                 </div>
               
                                 <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender2">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender2" value="L">
                                     <label class="form-check-label" for="gender2">
                                       Laki - Laki
                                     </label>
                                 </div>
                             </div>
                             <div class="pt-1 mb-4">
-                              <button class="btn btn-dark btn-lg btn-block" type="button">Registrasi</button>
+                              <button class="btn btn-dark btn-lg btn-block" type="submit">Registrasi</button>
+                              <a class="btn btn-lg btn-block btn-secondary" name="unproses" href="{{ url('/')}}">Kembali</a>
                             </div>
 
                           </form>

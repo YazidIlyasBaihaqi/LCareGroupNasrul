@@ -134,11 +134,11 @@ class ArtikelController extends Controller
         //------------apakah user  ingin ubah upload foto baru--------- --
         if (isset($request->foto)) {
             //jika ada foto lama, hapus foto lamanya terlebih dahulu
-            if (isset($namaFileFotoLama)) unlink('artikel/assets/img/' . $namaFileFotoLama);
+            if (isset($namaFileFotoLama)) unlink('assets/imgs/artikel/' . $namaFileFotoLama);
             //lalukan proses ubah foto lama menjadi foto baru
             $fileName = 'artikel_' . $request->judul . '.' . $request->foto->extension();
             //$fileName = $request->foto->getClientOriginalName();
-            $request->foto->move(public_path('artikel/assets/img'), $fileName);
+            $request->foto->move(public_path('/assets/imgs/artikel/'), $fileName);
         } else {
             $fileName = $namaFileFotoLama;
         }
@@ -163,10 +163,11 @@ class ArtikelController extends Controller
     {
         //sebelum hapus data, hapus terlebih dahulu fisik file fotonya jika ada
         $row = Artikel::find($id);
-        if (!empty($row->foto)) unlink('article/assets/img/' . $row->foto);
+        if (!empty($row->foto)) unlink('assets/imgs/artikel/' . $row->foto);
         //hapus data di database
         Artikel::where('id', $id)->delete();
-        return redirect()->route('artikel.index')
+        $user = Auth::user();
+        return redirect()->route('artikel.index', ['user' => $user])
             ->with('success', 'Artikel Berhasil Dihapus');
     }
 }

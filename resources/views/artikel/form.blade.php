@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-<div class="m-1" style="background-color:#fffafa; width:73%;">
+<div class="col-9" style="background-color:#fffafa; border-style: solid; border-color: #A7D7C5;">
     <h3>Form Produk</h3>
     @if ($errors->any())
         <div class="alert alert-danger">

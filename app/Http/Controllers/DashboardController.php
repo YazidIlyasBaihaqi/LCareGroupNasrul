@@ -13,9 +13,9 @@ class DashboardController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $datas = Artikel::get();
+        $artikel = Artikel::inRandomOrder()->first();;
 
-        return view('landingPage.index', compact('user', 'datas'));
+        return view('landingPage.index', compact('user', 'artikel'));
     }
 
     public function adminView()

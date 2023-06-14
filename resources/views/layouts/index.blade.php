@@ -1,12 +1,16 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="{{ asset('bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
 </head>
-<body>
+<body class="mw-100">
     <div class="container p-0" style="background-color: #A7D7C5; min-width: 100%;">
         {{-- @include('landingPage.header') --}}
         @include('layouts.header')
-        <div class="row">
-            @if ($user->role = "Admin")
+        <div class="row w-100">
+            @if ($user->role == "Admin")
                 @include('layouts.adminsidebar')
             @else
                 @include('layouts.sidebar')

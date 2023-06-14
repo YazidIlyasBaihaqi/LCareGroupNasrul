@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\artikeljuduljuduldeskripseideskripsiudserse\Eloquent\Model;
 
 class DakesController extends Controller
@@ -34,7 +35,44 @@ class DakesController extends Controller
         }
         $user = Auth::user();
 
-        return view('dakes.index', compact('datas', 'user'));
+        $data = $user->tgl_lahir;
+        $start = Carbon::parse($data);
+        $end = Carbon::now();
+        $umur = $end->diffInDays($start);
+        if (count($datas) == 0) {
+            return view('dakes.index', compact('datas', 'user'));
+        }
+        foreach ($datas as $item) {
+            $detak = $item->detak_jantung;
+            if ($umur >= 20 && $umur <= 34) {
+                if ($detak >= 95 && $detak >= 170) {
+                    $statusDetak = '(Baik)';
+                } else {
+                    $statusDetak = '(Buruk)';
+                }
+            } else if ($umur >= 35 && $umur <= 50) {
+                if ($detak >= 85 && $detak >= 155) {
+                    $statusDetak = '(Baik)';
+                } else {
+                    $statusDetak = '(Buruk)';
+                }
+            } else if ($umur > 50) {
+                if ($detak >= 80 && $detak >= 130) {
+                    $statusDetak = '(Baik)';
+                } else {
+                    $statusDetak = '(Buruk)';
+                }
+            }
+
+            $durasi = $item->durasi_tidur;
+            if ($durasi >= 7 && $durasi <= 9) {
+                $statusDurasi = '(Baik)';
+            } else {
+                $statusDurasi = '(Buruk)';
+            }
+        }
+
+        return view('dakes.index', compact('datas', 'user', 'statusDetak', 'statusDurasi'));
     }
 
     /**
@@ -42,7 +80,8 @@ class DakesController extends Controller
      */
     public function create()
     {
-        return view('dakes.form');
+        $user = Auth::user();
+        return view('dakes.form', compact('user'));
     }
 
     /**
@@ -65,11 +104,11 @@ class DakesController extends Controller
             ]
         );
 
-        DB::table('jurnal_kesehatan')->insert(
+        DB::table('data_kesehatan')->insert(
             [
-                'durasi_tidur' => $request->entry_date,
-                'tekanan_darah' => $request->aktifitas,
-                'detak_jantung' => $request->care_notes,
+                'durasi_tidur' => $request->durasi_tidur,
+                'tekanan_darah' => $request->tekanan_darah,
+                'detak_jantung' => $request->detak_jantung,
                 'user_id' => Auth::user()->id,
             ]
         );
@@ -83,8 +122,9 @@ class DakesController extends Controller
      */
     public function show(string $id)
     {
+        $user = Auth::user();
         $data = Data_Kesehatan::find($id);
-        return view('dakes.detail', compact('data'));
+        return view('dakes.detail', compact('data', 'user'));
     }
 
     /**
@@ -92,8 +132,9 @@ class DakesController extends Controller
      */
     public function edit(string $id)
     {
+        $user = Auth::user();
         $data = Data_Kesehatan::find($id);
-        return view('dakes.form_edit', compact('data'));
+        return view('dakes.form_edit', compact('data', 'user'));
     }
 
     /**
@@ -119,9 +160,9 @@ class DakesController extends Controller
         //lakukan update data dari request form edit
         DB::table('data_kesehatan')->where('id', $id)->update(
             [
-                'durasi_tidur' => $request->entry_date,
-                'tekanan_darah' => $request->aktifitas,
-                'detak_jantung' => $request->care_notes,
+                'durasi_tidur' => $request->durasi_tidur,
+                'tekanan_darah' => $request->tekanan_darah,
+                'detak_jantung' => $request->detak_jantung,
                 'user_id' => Auth::user()->id,
             ]
         );

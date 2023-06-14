@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-<div class="m-1" style="background-color:#fffafa; width:73%;">
+<div class="col-9" style="background-color:#fffafa; border-style: solid; border-color: #A7D7C5;">
     <h3>Form Produk</h3>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -21,7 +21,7 @@
         </div>
         <div class="form-floating mb-3">
             <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi" rows="5"></textarea>
-            <label for="deskripsi">Deskripsi</label>
+            <label for="deskripsi">{{$data->deskripsi}}</label>
             <div class="invalid-feedback" data-sb-feedback="deksripsi:required">Deskripsi is required.</div>
         </div>
         <div class="form-floating mb-3">

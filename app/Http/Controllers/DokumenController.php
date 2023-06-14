@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Dokumen_Medis;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Models\Data_Kesehatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +42,8 @@ class DokumenController extends Controller
      */
     public function create()
     {
-        return view('dokumed.form');
+        $user = Auth::user();
+        return view('dokumed.form', compact('user'));
     }
 
     /**
@@ -55,7 +55,65 @@ class DokumenController extends Controller
         $request->validate(
             [
                 'tipe_dokumen' => 'required',
-                'file_upload' => 'required|pdf|mimes:pdf|min:2|max:1000',
+                'file_upload' => 'required|min:2|max:1000',
+            ],
+            //custom pesan errornya
+            [
+                'tipe_dokumen.required' => 'Data Tipe Dokumen Wajib Diisi',
+                'file_upload.required' => 'File Wajib Diupload',
+                'file_upload.min' => 'Ukuran file kurang 2 KB',
+                'file_upload.max' => 'Ukuran file melebihi 1000 KB',
+            ]
+        );
+        $user = Auth::user();
+        if (isset($request->file_upload)) {
+            $filename = 'dokumed_' . $user->user . "_" . $request->tipe_dokumen . '.' . $request->file_upload->extension();
+            $request->file_upload->move(public_path('/assets/dokumed/' . $user->user), $filename);
+        } else {
+            $filename = null;
+        }
+
+        DB::table('dokumen_medis')->insert(
+            [
+                'tipe_dokumen' => $request->tipe_dokumen,
+                'file_upload' => $filename,
+                'user_id' => Auth::user()->id
+            ]
+        );
+
+        return redirect()->route('dokumed.index')
+            ->with('success', 'Data Kesehatan Baru Berhasil Disimpan');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $data = Dokumen_Medis::find($id);
+        return view('dokumed.detail', compact('data'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $user = Auth::user();
+        $data = Dokumen_Medis::find($id);
+        return view('dokumed.form_edit', compact('data', 'user'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //proses input produk dari form
+        $request->validate(
+            [
+                'tipe_dokumen' => 'required',
+                'file_upload' => 'required|min:2|max:1000',
             ],
             //custom pesan errornya
             [
@@ -67,69 +125,34 @@ class DokumenController extends Controller
                 'file_upload.mimes' => 'Extension file harus pdf',
             ]
         );
-
-        DB::table('jurnal_kesehatan')->insert(
-            [
-                'durasi_tidur' => $request->entry_date,
-                'tekanan_darah' => $request->aktifitas,
-                'detak_jantung' => $request->care_notes,
-                'user_id' => Auth::user()->id,
-            ]
-        );
-
-        return redirect()->route('dakes.index')
-            ->with('success', 'Data Kesehatan Baru Berhasil Disimpan');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $data = Data_Kesehatan::find($id);
-        return view('dakes.detail', compact('data'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $data = Data_Kesehatan::find($id);
-        return view('dakes.form_edit', compact('data'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //proses input produk dari form
-        $request->validate(
-            [
-                'detak_jantung' => 'required',
-                'tekanan_darah' => 'required',
-                'durasi_tidur' => 'required',
-            ],
-            //custom pesan errornya
-            [
-                'durasi_tidur.required' => 'Durasi Tidur Wajib Diisi',
-                'tekanan_darah.required' => 'Tekanan Darah Wajib Diisi',
-                'detak_jantung.required' => 'Detak Jantung Wajib Diisi',
-            ]
-        );
-
+        $user = Auth::user();
+        $file = DB::table('dokumen_medis')->select('file_upload')->where('id', $id)->get();
+        foreach ($file as $f) {
+            $namaFileLama = $f->file_upload;
+        }
+        //------------apakah user  ingin ubah upload file baru--------- --
+        if (isset($request->file_upload)) {
+            //jika ada file lama, hapus file lamanya terlebih dahulu
+            if (isset($namaFileLama)) {
+                unlink('assets/dokumed/' . $user->user . "/" . $namaFileLama);
+                //lalukan proses ubah file lama menjadi file baru
+                $fileName = 'dokumed_' . $user->user . "_" . $request->tipe_dokumen . '.' . $request->file_upload->extension();
+                //$fileName = $request->file->getClientOriginalName();
+                $request->file_upload->move(public_path('/assets/dokumed/' . $user->user), $fileName);
+            }
+        } else {
+            $fileName = $namaFileLama;
+        }
         //lakukan update data dari request form edit
-        DB::table('data_kesehatan')->where('id', $id)->update(
+        DB::table('dokumen_medis')->where('id', $id)->update(
             [
-                'durasi_tidur' => $request->entry_date,
-                'tekanan_darah' => $request->aktifitas,
-                'detak_jantung' => $request->care_notes,
-                'user_id' => Auth::user()->id,
+                'tipe_dokumen' => $request->tipe_dokumen,
+                'file_upload' => $fileName,
+                'user_id' => Auth::user()->id
             ]
         );
 
-        return redirect('/dakes' . '/' . $id)
+        return redirect('/dokumed')
             ->with('success', 'Data Kesehatan Berhasil Diubah');
     }
 
@@ -139,8 +162,8 @@ class DokumenController extends Controller
     public function destroy(string $id)
     {
         //hapus data di database
-        Data_Kesehatan::where('id', $id)->delete();
-        return redirect()->route('dakes.index')
+        Dokumen_Medis::where('id', $id)->delete();
+        return redirect()->route('dokumed.index')
             ->with('success', 'Data Kesehatan Berhasil Dihapus');
     }
 }
