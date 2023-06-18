@@ -31,4 +31,9 @@ class DashboardController extends Controller
             'user' => Auth::user()
         ]);
     }
+
+    public function back()
+    {
+        return back()->withInput();
+    }
 }

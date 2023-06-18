@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 col-3" style="background-color: #fffafa; width:25%;">
+<div class="d-flex flex-column flex-shrink-0 p-3 col-3" style="background-color: #fffafa; border-style: solid; border-color: #A7D7C5;">
     <ul class="nav nav-pills flex-column mb-auto">
         <li>
         <a href="{{url('/home')}}" class="nav-link mb-3 " style="color:black;">

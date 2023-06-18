@@ -1,6 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <div class="col-9" style="background-color:#fffafa; border-style: solid; border-color: #A7D7C5;">
+    <div class="container mt-3">
     <h3>Form Produk</h3>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -34,6 +35,7 @@
         <button class="btn btn-info" name="unproses" value="batal" id="batal" type="reset">Batal</button>
         
     </form>
+    </div>
 </div>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 @endsection

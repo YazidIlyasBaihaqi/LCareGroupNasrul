@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -38,7 +39,7 @@ class ProfileController extends Controller
             };
             return redirect('/home');
         }
-
-        return redirect()->back()->withErrors(['email' => 'Invalid Credentials!']);
+        alert()->warning('Error', 'Email atau Password salah');
+        return redirect()->back();
     }
 }

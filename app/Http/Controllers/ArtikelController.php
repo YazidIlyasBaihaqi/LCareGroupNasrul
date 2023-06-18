@@ -40,13 +40,13 @@ class ArtikelController extends Controller
         return view('artikel.form', compact('user'));
     }
 
-    // public function show()
-    // {
-    //     $datas = Artikel::get();
-    //     $user = Auth::user();
+    public function show(string $id)
+    {
+        $data = Artikel::find($id);
+        $user = Auth::user();
 
-    //     return view('admin.artikel', compact('datas', 'user'));
-    // }
+        return view('artikel.detail', compact('data', 'user'));
+    }
 
     public function store(Request $request)
     {

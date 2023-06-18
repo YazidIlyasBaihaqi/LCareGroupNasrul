@@ -25,7 +25,7 @@ class DokumenController extends Controller
         if (Auth::user()->role == 'Admin') {
             $datas = DB::table('dokumen_medis')
                 ->join('user', 'user.id', '=', 'dokumen_medis.user_id')
-                ->select('dokumen_medis.*', 'user.nama as pengguna')
+                ->select('dokumen_medis.*', 'user.user as pengguna')
                 ->orderBy('dokumen_medis.id', 'desc')
                 ->get();
         } else {
@@ -104,9 +104,6 @@ class DokumenController extends Controller
         return view('dokumed.form_edit', compact('data', 'user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //proses input produk dari form
@@ -136,18 +133,18 @@ class DokumenController extends Controller
             if (isset($namaFileLama)) {
                 unlink('assets/dokumed/' . $user->user . "/" . $namaFileLama);
                 //lalukan proses ubah file lama menjadi file baru
-                $fileName = 'dokumed_' . $user->user . "_" . $request->tipe_dokumen . '.' . $request->file_upload->extension();
-                //$fileName = $request->file->getClientOriginalName();
-                $request->file_upload->move(public_path('/assets/dokumed/' . $user->user), $fileName);
+                $filename = 'dokumed_' . $user->user . "_" . $request->tipe_dokumen . '.' . $request->file_upload->extension();
+                //$filename = $request->file->getClientOriginalName();
+                $request->file_upload->move(public_path('/assets/dokumed/' . $user->user), $filename);
             }
         } else {
-            $fileName = $namaFileLama;
+            $filename = $namaFileLama;
         }
         //lakukan update data dari request form edit
         DB::table('dokumen_medis')->where('id', $id)->update(
             [
                 'tipe_dokumen' => $request->tipe_dokumen,
-                'file_upload' => $fileName,
+                'file_upload' => $filename,
                 'user_id' => Auth::user()->id
             ]
         );
@@ -165,5 +162,11 @@ class DokumenController extends Controller
         Dokumen_Medis::where('id', $id)->delete();
         return redirect()->route('dokumed.index')
             ->with('success', 'Data Kesehatan Berhasil Dihapus');
+    }
+
+    public function download(string $filename)
+    {
+        $user = Auth::user();
+        return response()->download(public_path('/assets/dokumed/' . $user->user . "/" . $filename));
     }
 }

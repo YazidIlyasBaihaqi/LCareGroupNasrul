@@ -8,7 +8,7 @@
             <img class="card-img-top" src="{{asset('/assets/imgs/Yazid.png')}}" style="height:200px;width:150px;">
             <h5 class="card-title">Frontend</h5>
             <div class="card-body">
-                <p class="card-text">Yazid Ilyas Baihaqi</p>
+                <p class="card-text">Yazid Ilyas Baihaqi / STT Terpadu Nurul Fikri</p>
             </div>
           </div>
         </div>        
@@ -17,7 +17,7 @@
               <img class="card-img-top" src="{{asset('/assets/imgs/Rio.jpg')}}" style="height:200px;width:150px;">
               <h5 class="card-title">Backend</h5>
               <div class="card-body">
-                  <p class="card-text">Rio Bayu</p>
+                  <p class="card-text">Rio Bayu / STMIK Sinar Nusantara Surakarta</p>
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@
             <img src="{{asset('/assets/imgs/Aldi.jpg')}}" class="card-img-top" alt="..." style="height:200px;width:150px;">
             <h5 class="card-title">Backend</h5>
             <div class="card-body">
-                <p class="card-text">M. Aldi</p>
+                <p class="card-text">M. Aldi Kurniawan / Universitas Lampung</p>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
             <img src="{{asset('/assets/imgs/Eka.jpg')}}" class="card-img-top" alt="..." style="height:200px;width:150px;">
             <h5 class="card-title">UI dan Design</h5>
             <div class="card-body">
-                <p class="card-text">Eka Rahma</p>
+                <p class="card-text">Eka Rahmawati / STT terpadu Nurul Fikri</p>
             </div>
           </div>
         </div>
@@ -49,37 +49,6 @@
             </div>
           </div>
     </div>
-      
-        {{-- <div class="row text-center">
-            <div class="col card-columns d-flex justify-content-center">
-                <div class="card text-center" style="width: 50%;">
-                    <h3>Frontend</h3>
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{asset('/assets/imgs/Yazid.png')}}" style="height:200px;width:150px;">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-9 card text-center" style="width: 50%;">
-                <h3>Backend</h3>
-                <div class="row">
-                    <div class="col-6 card-body">
-                        <img class="card-img-top" src="{{asset('/assets/imgs/Yazid.png')}}" alt="">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                    <div class="col-6 card-body">
-                        <img class="card-img-top" src="{{asset('/assets/imgs/Yazid.png')}}" alt="">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 </div>
 @endsection

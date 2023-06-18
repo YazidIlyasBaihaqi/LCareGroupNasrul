@@ -9,13 +9,18 @@
                 </div>
             @endif
             <div class="col-lg-12">
-                <a href="{{route('dakes.create')}}" class="btn btn-primary btn-rounded btn-fw">Tambah Data</a>
+                <a href="{{route('dakes.create')}}" class="btn btn-primary btn-rounded btn-fw">
+                    <i class="bi bi-plus"></i>
+                </a>
             </div>
             <div class="container mt-3">
                 <table class="table table-hover datatable">
                     <thead>
                         <tr>
                             <th>No</th>
+                            @if ($user -> role =='Admin')
+                                <th>User</th>
+                            @endif
                             <th>Tekanan Darah</th>
                             <th>Detak Jantung</th>
                             <th>Durasi Tidur</th>
@@ -28,6 +33,9 @@
                 @foreach ($datas as $item)
                     <tbody>
                         <th>{{ $no }}</th>
+                        @if ($user -> role =='Admin')
+                            <td>{{$item->pengguna}}</td>
+                        @endif
                         <td>{{ $item->tekanan_darah }}</td>
                         <td>{{ $item->detak_jantung }} {{$statusDetak}}</td>
                         <td>{{ $item->durasi_tidur }} {{$statusDurasi}}</td>

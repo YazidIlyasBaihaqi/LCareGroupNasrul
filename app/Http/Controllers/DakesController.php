@@ -26,7 +26,7 @@ class DakesController extends Controller
         if (Auth::user()->role == 'Admin') {
             $datas = DB::table('data_kesehatan')
                 ->join('user', 'user.id', '=', 'data_kesehatan.user_id')
-                ->select('data_kesehatan.*', 'user.nama as pengguna')
+                ->select('data_kesehatan.*', 'user.user as pengguna')
                 ->orderBy('data_kesehatan.id', 'desc')
                 ->get();
         } else {

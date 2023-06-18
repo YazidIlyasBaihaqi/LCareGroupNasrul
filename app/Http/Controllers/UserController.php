@@ -12,13 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $datas = DB::table('artikel')
-            ->join('user', 'user.id', '=', 'artikel.user_id')
-            ->select('artikel.*', 'user.user as editor')
-            ->orderBy('artikel.id', 'desc')
-            ->get();
         $user = Auth::user();
-        return view('admin.artikel', compact('datas', 'user'));
+        return view('landingPage.user', compact('user'));
     }
 
     /**

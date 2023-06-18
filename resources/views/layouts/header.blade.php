@@ -4,9 +4,23 @@
             <h3 style="color: 76DEB7;">Halo Lansia</h3>
         </div>
 
-        <div class="col-md-3 text-end">
+        {{-- <div class="col-md-3 text-end">
             {{ $user -> user}}
             <a href="{{ url('logout') }}" class="btn btn-outline-primary me-2">Logout</a>
-        </div>
+        </div> --}}
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @if (isset($user->foto))
+                    <img src="{{asset('assets/imgs/'.$user->foto)}}" class="img-thumbnail rounded" alt="user profile" width="25px" height="auto">
+                @else
+                    <img src="{{asset('assets/imgs/user-png.png')}}" class="img-thumbnail rounded" alt="..." width="25px" height="auto">
+                @endif
+                {{ $user -> user}}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url('/user')}}">Profile</a></li>
+                <li><a class="dropdown-item" href="{{ url('logout') }}">Logout</a></li>
+            </ul>
+          </div>
     </div>
 </div>

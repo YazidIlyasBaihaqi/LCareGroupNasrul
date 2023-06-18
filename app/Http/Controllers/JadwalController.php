@@ -29,7 +29,7 @@ class JadwalController extends Controller
         if (Auth::user()->role == 'Admin') {
             $ar_jadwal = DB::table('jadwal')
                 ->join('user', 'user.id', '=', 'jadwal.user_id')
-                ->select('jadwal.*', 'user.user as nama')
+                ->select('jadwal.*', 'user.user as user')
                 ->orderBy('jadwal.id', 'desc')
                 ->get();
         } else {

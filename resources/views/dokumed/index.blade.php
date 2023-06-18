@@ -9,7 +9,9 @@
                 </div>
             @endif
             <div class="col-lg-12">
-                <a href="{{route('dokumed.create')}}" class="btn btn-primary btn-rounded btn-fw">Tambah Data</a>
+                <a href="{{route('dokumed.create')}}" class="btn btn-primary btn-rounded btn-fw">
+                    <i class="bi bi-plus"></i>
+                </a>
             </div>
             <table class="table table-hover datatable">
                 <thead>
@@ -34,6 +36,10 @@
                             @method('DELETE')
                             <a class="btn btn-warning" href="{{route('dokumed.edit' , $item->id)}}" title="ubah">   
                               <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            {{-- Download Data --}}
+                            <a class="btn btn-primary" href="{!! route('dokumed-download', $item->file_upload) !!}">
+                                <i class="fa-solid fa-download"></i>
                             </a>
                             <!-- hapus data -->
                             <button class="btn btn-danger" type="submit" title="Hapus"
