@@ -39,9 +39,6 @@ class DakesController extends Controller
         $start = Carbon::parse($data);
         $end = Carbon::now();
         $umur = $end->diffInDays($start);
-        if (count($datas) == 0) {
-            return view('dakes.index', compact('datas', 'user'));
-        }
         foreach ($datas as $item) {
             $detak = $item->detak_jantung;
             if ($umur >= 20 && $umur <= 34) {
@@ -71,8 +68,10 @@ class DakesController extends Controller
                 $statusDurasi = '(Buruk)';
             }
         }
-
-        return view('dakes.index', compact('datas', 'user', 'statusDetak', 'statusDurasi'));
+        if (isset($statusDetak) || isset($statusDurasi)) {
+            return view('dakes.index', compact('datas', 'user', 'statusDetak', 'statusDurasi'));
+        }
+        return view('dakes.index', compact('datas', 'user'));
     }
 
     /**

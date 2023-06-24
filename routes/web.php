@@ -27,7 +27,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::post('/login', [ProfileController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
-    Route::resource('user', UserController::class);
     Route::resource('jadwal', JadwalController::class); //Jadwal
     Route::resource('jurkes', JurkesController::class); //Jurnal Perawatan
     Route::resource('dakes', DakesController::class); //Pemantauan Kesehatan
@@ -49,6 +48,7 @@ Route::get('/registrasi', function () {
     return view('register.index');
 });
 Route::get('/', [ProfileController::class, 'show'])->name('login');
+Route::resource('user', UserController::class);
 
 // Auth::routes();
 

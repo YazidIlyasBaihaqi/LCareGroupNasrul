@@ -35,9 +35,9 @@
                         <form method="POST" action="{{ route('jurkes.destroy', $data->id) }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ url('/jurkes-pdf') }}" class="btn btn-danger" title="Export to PDF">
+                            {{-- <a href="{{ url('/jurkes-pdf') }}" class="btn btn-danger" title="Export to PDF">
                                 <i class="bi bi-file-earmark-pdf-fill"></i>
-                            </a>
+                            </a> --}}
                             <a class="btn btn-warning" href="{{route('jurkes.edit', $data->id)}}" title="ubah">   
                               <i class="bi bi-pencil-fill"></i>
                             </a>

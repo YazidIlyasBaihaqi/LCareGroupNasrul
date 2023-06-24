@@ -9,11 +9,11 @@
             <a href="{{ url('logout') }}" class="btn btn-outline-primary me-2">Logout</a>
         </div> --}}
         <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class=" dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 @if (isset($user->foto))
-                    <img src="{{asset('assets/imgs/'.$user->foto)}}" class="img-thumbnail rounded" alt="user profile" width="25px" height="auto">
+                    <img src="{{asset('assets/imgs/'.$user->foto)}}" class="img-thumbnail rounded" alt="user profile" width="50px" height="auto">
                 @else
-                    <img src="{{asset('assets/imgs/user-png.png')}}" class="img-thumbnail rounded" alt="..." width="25px" height="auto">
+                    <img src="{{asset('assets/imgs/user-png.png')}}" class="img-thumbnail rounded" alt="..." width="50px" height="auto">
                 @endif
                 {{ $user -> user}}
             </button>

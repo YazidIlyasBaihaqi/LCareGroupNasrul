@@ -96,9 +96,9 @@ class ArtikelController extends Controller
      */
     public function edit(string $id)
     {
-        //tampilkan data lama di form
+        $user = Auth::user();
         $data = Artikel::find($id);
-        return view('artikel.form_edit', compact('data'));
+        return view('artikel.form_edit', compact('data', 'user'));
     }
 
     /**
@@ -111,8 +111,7 @@ class ArtikelController extends Controller
             [
                 'judul' => 'required|unique:artikel',
                 'deskripsi' => 'required',
-                'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:1000',
-                'user_id' => 'required',
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:1000'
             ],
             //custom pesan errornya
             [

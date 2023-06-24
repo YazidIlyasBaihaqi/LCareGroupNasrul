@@ -94,7 +94,8 @@ class JurkesController extends Controller
     public function edit(string $id)
     {
         $data = Jurnal_Kesehatan::find($id);
-        return view('jurkes.form_edit', compact('data'));
+        $user = Auth::user();
+        return view('jurkes.form_edit', compact('data', 'user'));
     }
 
     /**
@@ -127,7 +128,7 @@ class JurkesController extends Controller
             ]
         );
 
-        return redirect('/jurkes' . '/' . $id)
+        return redirect('/jurkes')
             ->with('success', 'Data Jurnal Kesehatan Berhasil Diubah');
     }
 
